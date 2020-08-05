@@ -15,7 +15,7 @@ module.exports = {
     output: {
         filename: "static/js/[name].js", // 打包后的文件名
         path: path.resolve('dist'), // 路径必须是一个绝对路径
-        publicPath: "/" // dist之后的公共路径
+        publicPath: "/demo/" // dist之后的公共路径
     },
     devServer: {
         // 开启服务器配置
