@@ -3,6 +3,8 @@ html,body{margin: 0;font-size: 16px;font-family: "Arial Black";}
     width: 100px;
     height: 100px;
     background: red;
-    transform: rotate(30deg);
+    -webkit-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+            transform: rotate(60deg);
     margin-left: 20px;
 }

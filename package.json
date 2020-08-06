@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^9.8.2",
+    "postcss-loader": "^3.0.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },

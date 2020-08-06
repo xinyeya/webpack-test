@@ -156,6 +156,8 @@ npx webpack
 	
 ## 4. 多页面(MPA)配置
 
+### 1. 多页面配置
+
 1. 多入口
     ```js
     entry: {
@@ -189,3 +191,101 @@ npx webpack
 		})
 	]
 	```
+
+### 2. 模拟服务器环境
+1. 安装一个全局的 `serve`
+	```shell
+	npm install -g serve
+	# cd 到dist文件夹下直接执行
+	cd dist
+	serve
+	```
+2. 例如要把代码文件存放在`dist/demo`文件夹中，解决方法
+	```js
+	output: {
+       filename: "static/js/[name].js", // 打包后的文件名
+           path: path.resolve('dist'), // 路径必须是一个绝对路径
+               publicPath: "/demo/" // dist之后的公共路径
+   }
+	```
+
+## 5. css-loader配置加载css样式
+
+### 1. loader安装css样式
+1. 安装css loader
+	```shell
+	npm install --save-dev css-loader style-loader mini-css-extract-plagin
+	# css-laoder: 解析@import这种语法
+	# style-loader: 把css插入到head标签中
+	# mini-css-extract-plugin: 抽离css样式让index.html里面的css样式变成link引入
+	```
+2. 配置css loader
+	- loeader 是有顺序的默认从右向左执行，从下往上执行。
+	- loader 可以写成字符串：use: 'css-loader'，写成数组['css-loader']，写成对象 
+	- [{loader: 'css-loader'}]对象的好处可以传好多参数。
+
+### 2. loader 配置加载 css 样式
+
+```js
+    let MiniCssExtractPlugin = require('mini-css-extract-plugin');
+        plugins: [
+            new MiniCssExtractPlugin([
+            filename: 'static/css/main.css'
+        ])
+    ] 
+
+    // 模块
+    module: {
+    	// 规则
+    	rules: [{
+    		test: /\.css$/,
+    		use: [
+    			MiniCssExtractPlugin.loader, // 都放到了上面的main.css里面
+    			{
+    				loader: 'css-loader'
+    			}
+    		]
+    	}]
+    }
+```
+
+## 6. post-css 处理 css 兼容
+
+### 1. css3 自动加前缀`-webkit-`
+1. 安装
+	```shell
+		yarn add -D postcss-loader autoprefixer
+		# 或
+		npm install --save postcss-loader autoprefixer
+	```
+	
+2. 配置
+	```js
+	let postCss = require('autoprefixer')({
+		"overrideBrowserslist": [
+			'last 10 Chrome versions',
+			'last 5 Firefox versions',
+			'Safari>=6',
+			'ie>8'
+		]
+	});
+	
+	{
+		test: /\.css$/,
+		use: [
+			'css-loader',
+			{
+				loader: 'postcss-loader',
+				options: {
+					plugins: [
+						postCss
+					]
+				}
+			}
+		]
+	}
+	```
+	
+	## 7. css和js压缩
+	
+	

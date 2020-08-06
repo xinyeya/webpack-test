@@ -3,10 +3,20 @@
 let path = require('path');
 
 // 引入html插件
-let HtmlWebpackPlugin = require('html-webpack-plugin');
+let htmlWebpackPlugin = require('html-webpack-plugin');
 
 // 引入css插件
-let MiniCssExtractPlugin = require('mini-css-extract-plugin');
+let miniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// 引入postcss，自动给css3样式＋前缀, 处理css兼容性
+let postCss = require('autoprefixer')({
+    "overrideBrowserslist": [
+        'last 10 Chrome versions',
+        'last 5 Firefox versions',
+        'Safari>=6',
+        'ie>8'
+    ]
+})
 
 module.exports = {
     // 模式 默认两种production(生产环境:代码压缩) development(开发环境:代码不压缩)
@@ -41,7 +51,7 @@ module.exports = {
         }
     },
     plugins: [
-        new HtmlWebpackPlugin({
+        new htmlWebpackPlugin({
             template: './public/index.html', // 关联的模板路径index.html
             filename: 'index.html', // 入口文件名
             chunks: ['index'], // 只引用index.js，解决index.html里面有index.js和admin.js的问题
@@ -52,7 +62,7 @@ module.exports = {
             hash: true
         }),
 
-        new HtmlWebpackPlugin({
+        new htmlWebpackPlugin({
             template: "./public/admin.html", // 关联的模板路径admin.html
             filename: "admin.html", // 入口文件名
             chunks: ['admin'], // 只引用admin.js，解决admin.html里面有index.js和admin.js的问题
@@ -62,7 +72,7 @@ module.exports = {
             hash: true
         }),
 
-        new MiniCssExtractPlugin({
+        new miniCssExtractPlugin({
             filename: 'static/css/main.css'
         })
     ],
@@ -70,9 +80,17 @@ module.exports = {
         rules: [{
             test: /\.css$/,
             use: [
-                MiniCssExtractPlugin.loader, // 都放到了上面的css.mian里面
+                miniCssExtractPlugin.loader, // 都放到了上面的css.mian里面
                 {
                     loader: 'css-loader'
+                },
+                {   // 处理css兼容性
+                    loader: "postcss-loader",
+                    options: {
+                        plugins: [
+                            postCss
+                        ]
+                    }
                 }
             ]
         }]
