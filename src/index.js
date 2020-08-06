@@ -1,1 +1,1 @@
-console.log('index.js')
+import './assets/css/index/index.css'

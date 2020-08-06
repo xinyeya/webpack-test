@@ -1,0 +1,8 @@
+html,body{margin: 0;font-size: 16px;font-family: "Arial Black";}
+.box{
+    width: 100px;
+    height: 100px;
+    background: red;
+    transform: rotate(30deg);
+    margin-left: 20px;
+}

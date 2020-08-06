@@ -1,0 +1,8 @@
+@import "../common/public.css";
+.box{
+    width: 100px;
+    height: 100px;
+    background: red;
+    transform: rotate(30deg);
+    margin-left: 20px;
+}

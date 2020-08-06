@@ -1,9 +1,13 @@
 // webpack是node写出来的使用node语言
 // 路径
 let path = require('path');
+
 // 引入html插件
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-// console.log(path.resolve('dist'));
+
+// 引入css插件
+let MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 module.exports = {
     // 模式 默认两种production(生产环境:代码压缩) development(开发环境:代码不压缩)
     mode: "production",
@@ -15,7 +19,7 @@ module.exports = {
     output: {
         filename: "static/js/[name].js", // 打包后的文件名
         path: path.resolve('dist'), // 路径必须是一个绝对路径
-        publicPath: "/demo/" // dist之后的公共路径
+        publicPath: "/" // dist之后的公共路径
     },
     devServer: {
         // 开启服务器配置
@@ -56,6 +60,21 @@ module.exports = {
                 collapseWhitespace: true // 折叠不换行
             },
             hash: true
+        }),
+
+        new MiniCssExtractPlugin({
+            filename: 'static/css/main.css'
         })
-    ]
+    ],
+    module: {
+        rules: [{
+            test: /\.css$/,
+            use: [
+                MiniCssExtractPlugin.loader, // 都放到了上面的css.mian里面
+                {
+                    loader: 'css-loader'
+                }
+            ]
+        }]
+    }
 }
