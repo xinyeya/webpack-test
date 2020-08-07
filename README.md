@@ -16,19 +16,19 @@
 
 ### 3. webpack配置方法
 1. 进入项目项目目录生成`package.json`文件
-    ```shell 
+    ```shell
     npm init
     ```
 2. 安装`webpack`和`webpack-cli`(脚手架)
-	```shell
-	npm install -save -dev webpack webpack-cli
-	```
+    ```shell
+    npm install -save -dev webpack webpack-cli
+    ```
 3. 执行命令
 	```shell
 	npx webpack
 	```
 4. 配置`webpack.json`文件
-	```shell
+	```json
 	"script": {
 		"build": "webpack --config webpack.config.js"
 	}
@@ -37,6 +37,7 @@
 
 ### 4. webpack配置入口文件和打包后的文件
 根目录建立`webpack.config.js`文件
+
 ```js
 // webpack是node写出来的使用node语言
 let path = require('path');
@@ -227,26 +228,26 @@ npx webpack
 ### 2. loader 配置加载 css 样式
 
 ```js
-    let MiniCssExtractPlugin = require('mini-css-extract-plugin');
-        plugins: [
-            new MiniCssExtractPlugin([
-            filename: 'static/css/main.css'
-        ])
-    ] 
+let MiniCssExtractPlugin = require('mini-css-extract-plugin');
+plugins: [
+    new MiniCssExtractPlugin([
+        filename: 'static/css/main.css'
+    ])
+] 
 
-    // 模块
-    module: {
-    	// 规则
-    	rules: [{
-    		test: /\.css$/,
-    		use: [
-    			MiniCssExtractPlugin.loader, // 都放到了上面的main.css里面
-    			{
-    				loader: 'css-loader'
-    			}
-    		]
-    	}]
-    }
+// 模块
+module: {
+    // 规则
+    rules: [{
+        test: /\.css$/,
+        use: [
+            MiniCssExtractPlugin.loader, // 都放到了上面的main.css里面
+            {
+                loader: 'css-loader'
+            }
+        ]
+    }]
+}
 ```
 
 ## 6. post-css 处理 css 兼容
@@ -254,9 +255,9 @@ npx webpack
 ### 1. css3 自动加前缀`-webkit-`
 1. 安装
 	```shell
-		yarn add -D postcss-loader autoprefixer
-		# 或
-		npm install --save postcss-loader autoprefixer
+	yarn add -D postcss-loader autoprefixer
+	# 或
+	npm install --save postcss-loader autoprefixer
 	```
 	
 2. 配置
@@ -285,7 +286,48 @@ npx webpack
 		]
 	}
 	```
-	
-	## 7. css和js压缩
-	
-	
+
+## 7. css和js压缩
+
+### 1. css压缩
+
+```shell
+npm install --save optimize-css-assets-webpack-plugin
+```
+
+```js
+// css压缩
+let OptimizeCss = require('optimize-css-assets-webpack-plugin');
+module.exports = {
+    optimization: { // 优化项目启动后启动mode模式代码压缩不在生效，必须配置js压缩插件
+        minizer: [
+            new OptimizeCss() // 优化css
+        ]
+    }
+}
+```
+
+### 2. js压缩
+
+```shell
+npm install --save uglifyjs-webpack-plugin
+```
+
+```js
+// js压缩
+let Uglifyjs = require('uglifyjs-webpack-plugin');
+
+module.exports = {
+    optimization: { // 优化项
+        minizizer: [
+            // 压缩js
+            new UglifyjsPlugin({
+                cache: true, // 是否用缓存
+                paralle: true, // 是否并发打包
+                sourceMap: true // es6 映射es5 需要用
+            })
+        ]
+    }
+}
+```
+

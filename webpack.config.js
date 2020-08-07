@@ -8,6 +8,9 @@ let htmlWebpackPlugin = require('html-webpack-plugin');
 // 引入css插件
 let miniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// 引入css压缩插件
+let optimizeCss = require('optimize-css-assets-webpack-plugin');
+
 // 引入postcss，自动给css3样式＋前缀, 处理css兼容性
 let postCss = require('autoprefixer')({
     "overrideBrowserslist": [
@@ -50,6 +53,7 @@ module.exports = {
             }
         }
     },
+    // 插件
     plugins: [
         new htmlWebpackPlugin({
             template: './public/index.html', // 关联的模板路径index.html
@@ -76,6 +80,7 @@ module.exports = {
             filename: 'static/css/main.css'
         })
     ],
+    // 规则
     module: {
         rules: [{
             test: /\.css$/,
@@ -94,5 +99,13 @@ module.exports = {
                 }
             ]
         }]
+    },
+    // css压缩
+    optimization: {
+        // 优化项目启动后mode模式代码压缩不再生效，必须配置js压缩插件
+        minimizer: [
+            // 优化css
+            new optimizeCss()
+        ]
     }
 }
