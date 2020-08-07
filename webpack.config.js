@@ -9,7 +9,10 @@ let htmlWebpackPlugin = require('html-webpack-plugin');
 let miniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // 引入css压缩插件
-let optimizeCss = require('optimize-css-assets-webpack-plugin');
+let OptimizeCss = require('optimize-css-assets-webpack-plugin');
+
+// 引入js压缩插件
+let UglifyjsPlugin = require('uglifyjs-webpack-plugin');
 
 // 引入postcss，自动给css3样式＋前缀, 处理css兼容性
 let postCss = require('autoprefixer')({
@@ -19,11 +22,11 @@ let postCss = require('autoprefixer')({
         'Safari>=6',
         'ie>8'
     ]
-})
+});
 
 module.exports = {
-    // 模式 默认两种production(生产环境:代码压缩) development(开发环境:代码不压缩)
-    mode: "production",
+    // 模式 默认两种 production (生产环境:代码压缩) development(开发环境:代码不压缩)
+    mode: "development", // 配置了css和js压缩的情况下，mode将不在生效
     // 多入口
     entry: {
         index: './src/index.js',
@@ -105,7 +108,14 @@ module.exports = {
         // 优化项目启动后mode模式代码压缩不再生效，必须配置js压缩插件
         minimizer: [
             // 优化css
-            new optimizeCss()
+            new OptimizeCss(),
+
+            // 优化js
+            new UglifyjsPlugin({
+                cache: true, // 是否用缓存
+                parallel: true, // 是否并发打包
+                sourceMap: true // es6 映射为es5需要用
+            })
         ]
     }
-}
+};

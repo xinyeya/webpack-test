@@ -81,15 +81,19 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/admin.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 2:
+/***/ "./src/admin.js":
+/*!**********************!*\
+  !*** ./src/admin.js ***!
+  \**********************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-console.log('admin')
+eval("console.log('admin')\n\n//# sourceURL=webpack:///./src/admin.js?");
 
 /***/ })
 
