@@ -85,23 +85,38 @@ module.exports = {
     ],
     // 规则
     module: {
-        rules: [{
-            test: /\.css$/,
-            use: [
-                miniCssExtractPlugin.loader, // 都放到了上面的css.mian里面
-                {
-                    loader: 'css-loader'
-                },
-                {   // 处理css兼容性
-                    loader: "postcss-loader",
+        rules: [
+            // 编译css规则
+            {
+                test: /\.css$/,
+                use: [
+                    miniCssExtractPlugin.loader, // 都放到了上面的css.mian里面
+                    {
+                        loader: 'css-loader'
+                    },
+                    {   // 处理css兼容性
+                        loader: "postcss-loader",
+                        options: {
+                            plugins: [
+                                postCss
+                            ]
+                        }
+                    }
+                ]
+            },
+            // 打包图片规则
+            {
+                test: /\.(jpg|png|jpeg|gif)$/,
+                use: {
+                    loader: "url-loader",
                     options: {
-                        plugins: [
-                            postCss
-                        ]
+                        limit: 100*1024, // 小于100kb加载图片，url-loader图片小于多少k用base64显示
+                        // build之后的目录分类
+                        outputPath: "static/images"
                     }
                 }
-            ]
-        }]
+            }
+        ]
     },
     // css压缩
     optimization: {

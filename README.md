@@ -331,3 +331,52 @@ module.exports = {
 }
 ```
 
+## 8. 压缩图片
+
+### 1. 安装`url-loader`
+
+```shell
+npm install --save-dev url-loader
+```
+
+### 2. 配置
+
+```js
+module: {
+    rules: [
+        {
+            test: /\.(png|jeg|jpeg)$/,
+            use: {
+                loader: "url-loader", // file-loader加载图片，url-loader图片小于多少k用base64显示
+                options: {
+                    limit: 100 * 1024, // 小于100kb用base64
+                    // build之后的目录分类
+                    outputPath: "static/images"
+                }
+            }
+        }
+    ]
+}
+```
+
+### 3. 在 index.js 里面使用
+
+```js
+var image = new Image(); // 要用var不要用let定义，因为uglifyjs(js压缩)不支持es6
+// es5 写法
+// image.src = require("./assets/images/1.jpg").default;
+// es6 写法
+import logo from './assets/images/2.jpg';
+img.src = logo;
+img.width = 300;
+img.height = 200;
+document.body.appendChild(image);
+```
+
+### 4. 补充超过`100kb`的图片
+
+```shell
+# file-laoder主要提供图片路径
+npm install --save-dev file-loader
+```
+

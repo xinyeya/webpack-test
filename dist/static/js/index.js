@@ -97,6 +97,18 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 
 /***/ }),
 
+/***/ "./src/assets/images/2.jpg":
+/*!*********************************!*\
+  !*** ./src/assets/images/2.jpg ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"static/images/f8c867ae325a0b1c2c51f7e819070fe4.jpg\");\n\n//# sourceURL=webpack:///./src/assets/images/2.jpg?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -105,7 +117,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_index_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/index/index.css */ \"./src/assets/css/index/index.css\");\n/* harmony import */ var _assets_css_index_index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_index_index_css__WEBPACK_IMPORTED_MODULE_0__);\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _assets_css_index_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/css/index/index.css */ \"./src/assets/css/index/index.css\");\n/* harmony import */ var _assets_css_index_index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_assets_css_index_index_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _assets_images_2_jpg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/images/2.jpg */ \"./src/assets/images/2.jpg\");\n\r\nvar image = new Image();\r\n// es5 写法\r\n// image.src = require(\"./assets/images/1.jpg\").default;\r\n\r\n// es6 写法\r\n\r\nimage.src = _assets_images_2_jpg__WEBPACK_IMPORTED_MODULE_1__[\"default\"];\r\nimage.width = 300;\r\nimage.height = 200;\r\ndocument.body.appendChild(image);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
