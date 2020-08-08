@@ -379,3 +379,50 @@ document.body.appendChild(image);
 npm install --save-dev file-loader
 ```
 
+
+## 9. 用webpack搭建react项目
+
+### 1. 安装所需模块
+
+```shell
+# 安装react模块
+npm i react react-dom --save
+# 安装react的解析模块
+npm i babel-preset-react --save-dev
+# 安装所需的babel
+npm install babel-loader@next @babel/core @babel/preset-react @babel/runtime --save
+```
+
+### 2. 配置webpack.config.js
+
+```js
+{
+    test: /\.js$/,
+    use: {
+        loader: 'babel-loader',
+        options: {
+            preets: [
+                '@babel/preset-env',
+                '@babel/preset-react' // 增加@babel/preset-react
+            ]
+        }
+    }
+}
+```
+
+### 3. 测试react
+
+```jsx
+// 在index.js写入react代码
+import React from 'react';
+import ReactDOM from 'react-dom';
+class App extends React.Component {
+    render () {
+        return (
+            <div>Hello React!</div>
+        )
+    }
+}
+export default App;
+ReactDOM.render(<App/>, document.getElementById("app"));
+```
