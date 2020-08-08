@@ -115,6 +115,26 @@ module.exports = {
                         outputPath: "static/images"
                     }
                 }
+            },
+            // babel-loader es6转es5
+            {
+                test: /\.js$/, // 支持require('*.js)文件
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        // 用babel-loader 需要把es6转es5
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-react'
+                        ],
+                        plugins: [
+                            '@babel/plugin-proposal-class-properties',
+                            '@babel/plugin-transform-runtime'
+                        ]
+                    }
+                },
+                include: path.resolve(__dirname, 'src'), // 需要转换的文件夹
+                exclude: /node_modules/ // 排除转换的文佳佳
             }
         ]
     },

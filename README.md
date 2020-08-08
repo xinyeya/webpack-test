@@ -43,7 +43,7 @@
 let path = require('path');
 // console.log(path.resolve('dist'));
 module.exports = {
-    entry: './src/index.js', // 入口
+    entry: index-test.jst.js', // 入口
     output: {
         filename: "bundle.js", // 打包后的文件名
         path: path.resolve('dist') // 路径必须是一个绝对路径
@@ -57,7 +57,7 @@ let path = require('path');
 module.exports = {
     // 模式 默认两种production(生产环境:代码压缩)development(开发环境:代码不压缩)
     mode: "development",
-    entry: "./src/index.js",
+    entry: "./src/index-test.js",
     output: {
         filename: "bundle.js",
         path: path.resolve('dist')
@@ -162,8 +162,7 @@ npx webpack
 1. 多入口
     ```js
     entry: {
-        index: "./src/index.js",
-        admin: "./src/admin.js"
+        index: index-tindex-test.js        admin: "./src/admin.js"
     }
     ```
 2. 输出配置
@@ -359,7 +358,7 @@ module: {
 }
 ```
 
-### 3. 在 index.js 里面使用
+### 3. 在 indindex-test.js使用
 
 ```js
 var image = new Image(); // 要用var不要用let定义，因为uglifyjs(js压缩)不支持es6

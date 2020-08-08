@@ -1,11 +1,15 @@
-import './assets/css/index/index.css'
-var image = new Image();
-// es5 写法
-// image.src = require("./assets/images/1.jpg").default;
+import React from "react"
+import ReactDOM from 'react-dom';
 
-// es6 写法
-import logo from './assets/images/2.jpg';
-image.src = logo;
-image.width = 300;
-image.height = 200;
-document.body.appendChild(image);
+class App extends React.Component {
+        render() {
+        return (
+            <div>
+            Hello World
+            </div>
+        );
+    }
+}
+
+export default App;
+ReactDOM.render(<App></App>, document.getElementById("app"));
